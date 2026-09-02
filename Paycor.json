@@ -1,0 +1,855 @@
+{
+  "schema": {
+      "crud_objects": {
+          "tenants": {
+              "operations": {
+                  "tenantsList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "normal",
+                          "path": "/v1/tenants/{company_id}"
+                      },
+                      "processing_options": {
+                          "output_field": null
+                      }
+                  }
+              },
+              "key": "id",
+              "resources": {
+                "id": "string*",
+                "name": "string*",
+                "legalEntities": [
+                    {
+                        "id": "string*",
+                        "url": "string*"
+                    }
+                ]
+              }
+          },
+          "tenants_employees": {
+              "operations": {
+                  "tenants_employeesList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "normal",
+                          "path": "/v1/tenants/{company_id}/employees"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "id",
+              "resources": {
+                "id": "string*",
+                "employeeNumber": "string*",
+                "firstName": "string*",
+                "middleName": "string*",
+                "lastName": "string",
+                "employee": {
+                    "id": "_:string*",
+                    "url": "_:string*"
+                }
+              }
+          },
+          "tenants_jobTitles": {
+              "operations": {
+                  "tenants_jobTitlesList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "normal",
+                          "path": "/v1/tenants/{company_id}/jobtitles"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "jobTitleId",
+              "resources": {
+                "jobTitleId": "string*",
+                "jobTitle": "string*",
+                "jobCode": "string*",
+                "jobCategory": "string*",
+                "isArchived": "boolean",
+                "tenant": {
+                    "id": "_:string*",
+                    "url": "_:string*"
+                }
+              }
+          },
+          "tenants_persons": {
+              "operations": {
+                  "tenants_personsList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "normal",
+                          "path": "/v1/tenants/{company_id}/persons"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "id",
+              "resources": {
+                "id": "string*",
+                "prefix": "string*",
+                "firstName": "string*",
+                "middleName": "string*",
+                "lastName": "string*",
+                "suffix": "string*",
+                "person": {
+                    "id": "_:string*",
+                    "url": "_:string*",
+                    "legalEntityId": "_:string*"
+                }
+              }
+          },
+          "legalEntity_certificationOrganizations": {
+              "operations": {
+                  "legalEntity_certificationOrganizationsList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "iteration",
+                          "table": "tenants_legalEntities",
+                          "iterator": "id",
+                          "path": "/v1/legalentities/{iterator}/certificationOrganizations"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "certificationOrganizationId",
+              "resources": {
+                "certificationOrganizationId": "string*",
+                "certificationOrganizationName": "string*"
+              }
+          },
+          "legalEntity_departments": {
+              "operations": {
+                  "legalEntity_departmentsList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "iteration",
+                          "table": "tenants_legalEntities",
+                          "iterator": "id",
+                          "path": "/v1/legalentities/{iterator}/departments"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "id",
+              "resources": {
+                "id": "string*",
+                "code": "string*",
+                "description": "string*",
+                "parentId": "string*",
+                "level": "string*",
+                "payrollId": "string*",
+                "payrollDescription": "string*",
+                "workLocationId": "string*",
+                "workLocationName": "string*"
+              }
+          },
+          "legalEntity_employees": {
+              "operations": {
+                  "legalEntity_employeesList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "iteration",
+                          "table": "tenants_legalEntities",
+                          "iterator": "id",
+                          "path": "/v1/legalentities/{iterator}/employees"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "id",
+              "resources": {
+                "id": "string*",
+                "firstName": "string*",
+                "middleName": "string*",
+                "lastName": "string*",
+                "email": {
+                    "type": "_:string*",
+                    "emailAddress": "_:string*"
+                },
+                "employmentDateData": {
+                    "hireDate": "_:string*",
+                    "adjustedHireDate": "_:string*",
+                    "terminationDate": "_:string*",
+                    "terminationReason": "_:string*",
+                    "reHireDate": "_:string*",
+                    "seniorityDate": "_:string*"
+                },
+                "statusData": {
+                    "isFullTime": "_:boolean*",
+                    "status": "_:string*",
+                    "flsa": "_:string*",
+                    "type": "_:string*",
+                    "eligibleForRehire": "_:string*",
+                    "leaveStartDate": "_:string*",
+                    "leaveReason": "_:string*"
+                },
+                "workLocation": {
+                    "id": "_:string*",
+                    "name": "_:string*",
+                    "streetLine1": "_:string*",
+                    "type": "_:string*",
+                    "city": "_:string*",
+                    "county": "_:string*",
+                    "state": "_:string*",
+                    "zipCode": "_:string*",
+                    "country": "_:string*"
+                },
+                "earnings": {
+                    "id": "_:string*",
+                    "url": "_:string*"
+                },
+                "deductions": {
+                    "id": "_:string*",
+                    "url": "_:string*"
+                },
+                "taxes": {
+                    "id": "_:string*",
+                    "url": "_:string*"
+                },
+                "directDeposits": {
+                    "id": "_:string*",
+                    "url": "_:string*"
+                },
+                "payRates": {
+                    "id": "_:string*",
+                    "url": "_:string*"
+                },
+                "legalEntity": {
+                    "id": "_:string*",
+                    "url": "_:string*"
+                },
+                "person": {
+                    "id": "_:string*",
+                    "url": "_:string*"
+                },
+                "department": {
+                    "id": "_:string*",
+                    "url": "_:string*"
+                },
+                "positionData": {
+                    "jobTitle": "_:string*",
+                    "jobCode": "_:string*",
+                    "effectiveStartDate": "_:string*",
+                    "effectiveEndDate": "_:string*",
+                    "payGroupId": "_:string*",
+                    "manager": {
+                        "id": "_:string*",
+                        "employeeNumber": "_:string*",
+                        "employee": {
+                            "id": "_:string*",
+                            "url": "_:string*"
+                        }
+                    }
+                },
+                "employeeNumber": "string*",
+                "alternateEmployeeNumber": "string*",
+                "badgeNumber": "string*"
+              }
+          },
+          "legalEntity_employees_customFields": {
+              "operations": {
+                  "legalEntity_employees_customFieldsList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "iteration",
+                          "table": "legalEntity_employees",
+                          "iterator": "id",
+                          "path": "/v1/employees/{iterator}/customFields"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      },
+                      "maxSessionCount": 10
+                  }
+              },
+              "key": "customFieldId",
+              "resources": {
+                "customFieldId": "string*",
+                "legalEntityId": "string*",
+                "fieldName": "string*",
+                "dataType": "string*",
+                "value": "string*",
+                "isRequired": "boolean*",
+                "dateModified": "string*",
+                "employee": {
+                    "id": "_:string*",
+                    "url": "_:string*"
+                },
+                "customFieldsOptions": ["string*"]
+              }
+          },
+          "legalEntity_i9DelegateUsers": {
+              "operations": {
+                  "legalEntity_i9DelegateUsersList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "iteration",
+                          "table": "tenants_legalEntities",
+                          "iterator": "id",
+                          "path": "/v1/legalentities/{iterator}/I9DelegateUsers"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "i9DelegateUserId",
+              "resources": {
+                "i9DelegateUserId": "string*",
+                "fullName": "string*"
+              }
+          },
+          "legalEntity_jobTitles": {
+              "operations": {
+                  "legalEntity_jobtitlesList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "iteration",
+                          "table": "tenants_legalEntities",
+                          "iterator": "id",
+                          "path": "/v1/legalentities/{iterator}/jobtitles"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "jobTitleId",
+              "resources": {
+                "jobTitleId": "string*",
+                "jobTitle": "string*",
+                "jobCode": "string*",
+                "jobCategory": "string*",
+                "isArchived": "boolean*",
+                "tenant": {
+                    "id": "_:string*",
+                    "url": "_:string*"
+                }
+              }
+          },
+          "legalEntity_laborCategories": {
+              "operations": {
+                  "legalEntity_laborCategoriesList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "iteration",
+                          "table": "tenants_legalEntities",
+                          "iterator": "id",
+                          "path": "/v1/legalentities/{iterator}/laborCategories"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "laborCategoryId",
+              "resources": {
+                "laborCategoryId": "string*",
+                "legalEntityId": "string*",
+                "laborCategoryName": "string*",
+                "categoryLevel": "string*",
+                "categoryItemCount": "string*"
+              }
+          },
+          "legalEntity_laborCodes": {
+              "operations": {
+                  "legalEntity_laborCodesList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "iteration",
+                          "table": "tenants_legalEntities",
+                          "iterator": "id",
+                          "path": "/v1/legalentities/{iterator}/laborCodes"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "laborCodeId",
+              "resources": {
+                "laborCodeId": "string*",
+                "laborCategoryId": "string*",
+                "legalEntityId": "string*",
+                "laborCodeName": "string*",
+                "description": "string*",
+                "code": "string*",
+                "effectiveStartDate": "string*",
+                "effectiveEndDate": "string*"
+              }
+          },
+          "legalEntity_laborProfiles": {
+              "operations": {
+                  "legalEntity_laborProfilesList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "iteration",
+                          "table": "tenants_legalEntities",
+                          "iterator": "id",
+                          "path": "/v1/legalentities/{iterator}/laborProfiles"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "laborProfileId",
+              "resources": {
+                "laborProfileId": "string*",
+                "legalEntityId": "string*",
+                "laborProfileName": "string*",
+                "status": "string*",
+                "employeeCount": "string*",
+                "type": "string*"
+              }
+          },
+          "legalEntity_managerProfiles": {
+              "operations": {
+                  "legalEntity_managerProfilesList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "iteration",
+                          "table": "tenants_legalEntities",
+                          "iterator": "id",
+                          "path": "/v1/legalentities/{iterator}/managerProfiles"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "profileId",
+              "resources": {
+                "profileId": "string*",
+                "profileName": "string*",
+                "lastEdited": "string*",
+                "lastEditedBy": "string*",
+                "useOnlySelectedDepartments": "boolean*",
+                "useOnlySelectedHours": "boolean*",
+                "useOnlySelectedPayItems": "boolean*",
+                "useOnlySelectedLaborCodes": "boolean*",
+                "useOnlySelectedWorkLocations": "boolean*",
+                "useOnlySelectedActivityTypes": "boolean*",
+                "employeeAssigned": "string*"
+              }
+          },
+          "legalEntity_onboardingEmployees": {
+              "operations": {
+                  "legalEntity_onboardingemployeesList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "iteration",
+                          "table": "tenants_legalEntities",
+                          "iterator": "id",
+                          "path": "/v1/legalentities/{iterator}/onboardingemployees"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "onboardingEmployeeId",
+              "resources": {
+                "onboardingEmployeeId": "string*",
+                "legalEntityId": "string*",
+                "firstName": "string*",
+                "lastName": "string*",
+                "fullName": "string*",
+                "emailAddress": "string*",
+                "invitedDate": "string*",
+                "hasOnboardingAccess": "boolean*",
+                "hireDate": "string*",
+                "stepsTotal": "string*",
+                "stepsCompleted": "string*",
+                "lastEmployeeStepCompleted": "string*",
+                "lastEmployeeStepCompletedDate": "string*",
+                "lastAdminStepCompleted": "string*",
+                "lastAdminStepCompletedDate": "string*",
+                "workLocation": "string*",
+                "workLocationId": "string*",
+                "manager": "string*",
+                "managerId": "string*",
+                "employeeNumber": "string*"
+              }
+          },
+          "legalEntity_onboardingNotificationUsers": {
+              "operations": {
+                  "legalEntity_onboardingNotificationUsersList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "iteration",
+                          "table": "tenants_legalEntities",
+                          "iterator": "id",
+                          "path": "/v1/legalentities/{iterator}/onboardingNotificationUsers"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "onboardingNotificationUserId",
+              "resources": {
+                "onboardingNotificationUserId": "string*",
+                "fullName": "string*"
+              }
+          },
+          "legalEntity_persons": {
+              "operations": {
+                  "legalEntity_personsList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "iteration",
+                          "table": "tenants_legalEntities",
+                          "iterator": "id",
+                          "path": "/v1/legalentities/{iterator}/persons"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "id",
+              "resources": {
+                "id": "string*",
+                "prefix": "string*",
+                "firstName": "string*",
+                "middleName": "string*",
+                "lastName": "string*",
+                "suffix": "string*",
+                "legalFirstName": "string*",
+                "legalLastName": "string*",
+                "socialSecurityNumber": "string*",
+                "email": {
+                    "type": "_:string*",
+                    "emailAddress": "_:string*"
+                },
+                "demographicData": {
+                    "birthDate": "_:string*",
+                    "gender": "_:string*",
+                    "ethnicity": "_:string*",
+                    "maritalStatus": "_:string*",
+                    "maidenName": "_:string*"
+                },
+                "benefitData": {
+                    "isTobaccoUser": "_:boolean*",
+                    "disability": "_:string*"
+                },
+                "emergencyContactData": [
+                    {
+                        "id": "string*",
+                        "firstName": "string*",
+                        "middleName": "string*",
+                        "lastName": "string*",
+                        "phones": [
+                                    {
+                                        "countryCode": "string*",
+                                        "areaCode": "string*",
+                                        "phoneNumber": "string*",
+                                        "type": "string*",
+                                        "subscriberNumber": "string*"
+                                    }
+                        ],
+                        "order": "string*",
+                        "relationship": "string*"
+                    }
+                ],
+                "militaryData": {
+                    "veteran": "_:string*",
+                    "dischargeDate": "_:string*",
+                    "isArmedForcesServiceMedalVeteran": "_:boolean*",
+                    "isDisabledVeteran": "_:boolean*",
+                    "isOtherProtectedVeteran": "_:boolean*",
+                    "isRecentlySeparatedVeteran": "_:boolean*",
+                    "isVietnamEra": "_:boolean*",
+                    "isSpecialDisabled": "_:boolean*"
+                },
+                "socialMediaData": [
+                    {
+                        "type": "string*",
+                        "url": "string*"
+                    }
+                ],
+                "employeeAssignments": [
+                    {
+                        "employees": {
+                            "id": "_:string*",
+                            "url": "_:string*",
+                            "legalEntityId": "_:string*"
+                            }
+                    }
+                ],
+                "addresses": [
+                    {
+                        "streetLine1": "string*",
+                        "streetLine2": "string*",
+                        "suite": "string*",
+                        "city": "string*",
+                        "state": "string*",
+                        "country": "string*",
+                        "county": "string*",
+                        "zipCode": "string*",
+                        "countryZipCode": "string*",
+                        "zipCodePlusFour": "string*",
+                        "type": "string*"
+                    }
+                ],
+                "phones": [
+                    {
+                        "countryCode": "string*",
+                        "areaCode": "string*",
+                        "phoneNumber": "string*",
+                        "type": "string*",
+                        "subscriberNumber": "string*"
+                    }
+                ],
+                "customIdentifiers": [
+                    {
+                        "customIdentifierId": "string*",
+                        "xrefFieldId": "string*",
+                        "fieldName": "string*",
+                        "fieldLabel": "string*",
+                        "fieldValue": "string*",
+                        "category": "string*"
+                    }
+                ],
+                "tenants": {
+                    "id": "_:string*",
+                    "url": "_:string*"
+                }
+              }
+          },
+          "legalEntity_workLocations": {
+              "operations": {
+                  "legalEntity_workLocationsList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "iteration",
+                          "table": "tenants_legalEntities",
+                          "iterator": "id",
+                          "path": "/v1/legalentities/{iterator}/workLocations"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "id",
+              "resources": {
+                "id": "string*",
+                "name": "string*",
+                "addresses": [
+                    {
+                        "streetLine1": "string*",
+                        "streetLine2": "string*",
+                        "suite": "string*",
+                        "city": "string*",
+                        "state": "string*",
+                        "country": "string",
+                        "county": "string*",
+                        "zipCode": "string*",
+                        "type": "string*"
+                    }
+                ],
+                "phones": [
+                    {
+                        "countryCode": "string*",
+                        "areaCode": "string*",
+                        "phoneNumber": "string*",
+                        "type": "string*",
+                        "subscriberNumber": "string*"
+                    }
+                ],
+                "locationNumber": "string*",
+                "storeId": "string*",
+                "isFmlaEligible": "boolean*"
+              }
+          },
+          "legalEntity_workSites": {
+              "operations": {
+                  "legalEntity_workSitesList": {
+                      "method": "get",
+                      "call": {
+                          "mode": "iteration",
+                          "table": "tenants_legalEntities",
+                          "iterator": "id",
+                          "path": "/v1/legalentities/{iterator}/workSites"
+                      },
+                      "processing_options": {
+                          "output_field": "records"
+                      }
+                  }
+              },
+              "key": "id",
+              "resources": {
+                "id": "string*",
+                "name": "string*",
+                "streetLine1": "string*",
+                "streetLine2": "string*",
+                "city": "string*",
+                "state": "string*",
+                "zipCode": "string*",
+                "country": "string*",
+                "phoneNumber": "string*"
+              }
+          }
+      }
+  },
+  "rest": {
+      "config": {
+          "baseUrl": "https://{tenant_id}",
+          "get": {
+              "pagination": {
+                    "mode": "url",
+                    "field": "additionalResultsUrl",
+                    "replace_in_url": true
+                }
+          },
+          "headers": {
+            "Ocp-Apim-Subscription-Key": "{subscription_id}"
+          },
+          "authentication": "custom_post_token",
+          "call_handling": "generic",
+          "test_connection": {
+              "url": "/v1/tenants/{company_id}"
+          },
+          "socket_timeout": 3600000,
+          "retry": [
+              {
+                  "type": "statusCode",
+                  "statusCode": 429,
+                  "retry": {
+                      "type": "simple",
+                      "maxCount": 12,
+                      "waitTime": 5
+                  }
+              },
+              {
+                  "type": "statusCode",
+                  "statusCode": 500,
+                  "retry": {
+                      "type": "simple",
+                      "maxCount": 12,
+                      "waitTime": 5
+                  }
+              },
+              {
+                  "type": "connectionError"
+              }
+          ],
+          "accept": "application/json"
+      },
+      "authOptions": {
+        "type": "custom_post_token",
+        "authUrl": "https://{token_uri}",
+        "postAsForm": true,
+        "postData": {
+            "grant_type": "refresh_token",
+            "client_id": "{client_id}",
+            "client_secret": "{client_secret}",
+            "Ocp-Apim-Subscription-Key": "{subscription_id}",
+            "refresh_token": "{client_refresh_token}"
+        },
+        "tokenPath": "access_token",
+        "headerName": "Authorization",
+        "headerTemplate": "Bearer {token}"
+    }
+  },
+  "connection": {
+      "items": [
+           {
+                "name": "tenant_id",
+                "type": "textbox",
+                "label": "Tenent URL:",
+                "value": "apis.paycor.com",
+                "required": true,
+                "hidden": true,
+                "order": 1
+            },
+            {
+                "name": "token_uri",
+                "type": "textbox",
+                "label": "OAuth Token URI",
+                "value": "apis.paycor.com/sts/v1/common/token",
+                "required": true,
+                "hidden": true,
+                "order": 2
+            },
+            {
+                "name": "client_id",
+                "type": "textbox",
+                "label": "Client Id:",
+                "required": true,
+                "order": 3
+            },
+            {
+                "name": "client_secret",
+                "type": "textbox",
+                "password": true,
+                "label": "Client Secret:",
+                "required": true,
+                "order": 4
+            },
+            {
+                "name": "client_refresh_token",
+                "type": "textbox",
+                "password": true,
+                "label": "Refresh Token:",
+                "required": true,
+                "order": 5
+            },
+            {
+                "name": "subscription_id",
+                "type": "textbox",
+                "label": "Subscription Id:",
+                "value": "",
+                "required": true,
+                "order": 6
+            },
+            {
+                "name": "company_id",
+                "type": "textbox",
+                "label": "Company/Tenant Id:",
+                "value": "",
+                "required": true,
+                "order": 7
+            },
+            {
+                "name": "page_size",
+                "type": "textbox",
+                "label": "Page Size:",
+                "value": "1000",
+                "required": true,
+                "order": 100
+            },
+            {
+                "name": "user_name",
+                "type": "textbox",
+                "label": "Username:",
+                "value": "",
+                "hidden": true
+            },
+            {
+                "name": "password",
+                "type": "textbox",
+                "password": true,
+                "label": "Username:",
+                "value": "",
+                "hidden": true
+            }
+      ]
+  }
+}
