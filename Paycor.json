@@ -835,7 +835,7 @@
                 "label": "Tenent URL:",
                 "value": "apis.paycor.com",
                 "required": true,
-                "hidden": true,
+                "hidden": "true",
                 "order": 1
             },
             {
@@ -844,7 +844,7 @@
                 "label": "OAuth Token URI",
                 "value": "apis.paycor.com/sts/v1/common/token",
                 "required": true,
-                "hidden": true,
+                "hidden": "true",
                 "order": 2
             },
             {
@@ -899,7 +899,7 @@
                 "type": "textbox",
                 "label": "Username:",
                 "value": "",
-                "hidden": true
+                "hidden": "true"
             },
             {
                 "name": "password",
@@ -907,7 +907,7 @@
                 "password": true,
                 "label": "Username:",
                 "value": "",
-                "hidden": true
+                "hidden": "true"
             }
         ]
     }
