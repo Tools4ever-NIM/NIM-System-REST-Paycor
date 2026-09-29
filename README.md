@@ -1,5 +1,7 @@
 # Paycor
 
+Read the [Paycor integration documentation](https://docs.nimsuite.com/en/integrations/paycor) for connector details and related guides.
+
 <img src="https://github.com/user-attachments/assets/83da4d20-9d23-4c61-9213-75e330f853fa" width="256px" />
 
 
